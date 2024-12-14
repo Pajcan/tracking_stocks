@@ -12,12 +12,15 @@ class PortfolioSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.backgroundPrimary,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            PortfolioHeader(userBalance: portfolioUiModel.userBalance),
-            ListView.builder(
+      color: AppColors.backgroundSecondary,
+      child: Column(
+        children: [
+          PortfolioHeader(userBalance: portfolioUiModel.userBalance),
+          const SizedBox(height: 16),
+          Expanded(
+            child: ListView.separated(
+              scrollDirection: Axis.vertical,
+              separatorBuilder: (context, index) => const SizedBox(height: 8),
               itemCount: portfolioUiModel.investments.length,
               itemBuilder: (context, index) {
                 return InvestmentsListItem(
@@ -25,8 +28,8 @@ class PortfolioSection extends StatelessWidget {
                 );
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -7,11 +7,25 @@ part 'portfolio_response.g.dart';
 
 @JsonSerializable()
 class PortfolioResponse {
+  final PortfolioContentResponse? portfolio;
+
+  PortfolioResponse({this.portfolio});
+
+  factory PortfolioResponse.fromJson(Map<String, dynamic> json) =>
+      _$PortfolioResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PortfolioResponseToJson(this);
+}
+
+@JsonSerializable()
+class PortfolioContentResponse {
   final BalanceResponse? balance;
   final List<PositionResponse>? positions;
 
-  PortfolioResponse({this.balance, this.positions});
+  PortfolioContentResponse({this.balance, this.positions});
 
-  factory PortfolioResponse.fromJson(Map<String, dynamic> json) => _$PortfolioResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$PortfolioResponseToJson(this);
+  factory PortfolioContentResponse.fromJson(Map<String, dynamic> json) =>
+      _$PortfolioContentResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PortfolioContentResponseToJson(this);
 }

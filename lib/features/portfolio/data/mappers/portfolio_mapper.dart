@@ -12,8 +12,8 @@ import 'package:tracking_stocks/features/portfolio/domain/model/position.dart';
 class PortfolioMapper {
   Portfolio mapToDomain(PortfolioResponse response) {
     return Portfolio(
-      balance: mapBalance(response.balance),
-      positions: response.positions?.map(mapPosition).toList() ?? [],
+      balance: mapBalance(response.portfolio?.balance),
+      positions: response.portfolio?.positions?.map(mapPosition).toList() ?? [],
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_stocks/shared_ui/theme/app_text_styles.dart';
+import 'package:tracking_stocks/shared_ui/theme/colors.dart';
 
 class PriceWithPercentageText extends StatelessWidget {
   const PriceWithPercentageText({
@@ -16,15 +17,14 @@ class PriceWithPercentageText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String percentageText = percentage >= 0
-        ? "(+${percentage.toStringAsFixed(1)}%)"
-        : "(-${percentage.toStringAsFixed(1)}%)";
+        ? "+${percentage.toStringAsFixed(1)}%"
+        : "-${percentage.toStringAsFixed(1)}%";
     final Color percentageColor = percentage >= 0 ? Colors.green : Colors.red;
-
     return Row(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.baseline,
       children: [
         Text(balance, style: style),
+        const SizedBox(width: 4),
         RichText(
           text: TextSpan(children: [
             // Opening parenthesis (black)
@@ -90,6 +90,6 @@ class PositionCostText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text("$quantity x $averagePrice = $costs",
-        style: AppTextStyles.labelMedium);
+        style: AppTextStyles.labelMedium.copyWith(color: AppColors.textSecondary));
   }
 }

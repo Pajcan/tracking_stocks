@@ -13,13 +13,16 @@ class InvestmentsListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          InstrumentComponent(instrument: investmentsUiModel.instrument),
-          const SizedBox(width: 16),
-          PositionComponent(position: investmentsUiModel.position),
-        ],
+      color: AppColors.backgroundPrimary,
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            InstrumentComponent(instrument: investmentsUiModel.instrument),
+            const SizedBox(width: 16),
+            PositionComponent(position: investmentsUiModel.position),
+          ],
+        ),
       ),
     );
   }
@@ -33,6 +36,7 @@ class InstrumentComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(instrument.ticker, style: AppTextStyles.labelLarge),
@@ -60,7 +64,7 @@ class PositionComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         PriceWithPercentageText(
           balance: position.pnl,
@@ -73,7 +77,7 @@ class PositionComponent extends StatelessWidget {
             averagePrice: position.averagePrice,
             costs: position.costs),
         const SizedBox(height: 8),
-        Text(AutofillHints.postalAddress, style: AppTextStyles.labelMedium),
+        Text(position.marketValue, style: AppTextStyles.labelMedium),
       ],
     );
   }
