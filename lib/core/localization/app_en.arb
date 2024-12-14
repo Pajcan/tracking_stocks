@@ -1,3 +1,5 @@
 {
-  "appName": "Tracking Stocks"
+  "appName": "Tracking Stocks",
+  "netValue": "Net Value",
+  "pnl": "PnL (PnL %)"
 }
