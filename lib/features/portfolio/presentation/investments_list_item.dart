@@ -3,6 +3,7 @@ import 'package:tracking_stocks/features/portfolio/presentation/ui_model/investm
 import 'package:tracking_stocks/shared_ui/components/text_components.dart';
 import 'package:tracking_stocks/shared_ui/theme/app_text_styles.dart';
 import 'package:tracking_stocks/shared_ui/theme/colors.dart';
+import 'package:tracking_stocks/shared_ui/theme/gradients.dart';
 
 class InvestmentsListItem extends StatelessWidget {
   const InvestmentsListItem({super.key, required this.investmentsUiModel});
@@ -13,7 +14,17 @@ class InvestmentsListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
-      color: AppColors.backgroundPrimary,
+      decoration: BoxDecoration(
+        color: AppColors.backgroundPrimary,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.shadow,
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

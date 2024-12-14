@@ -11,26 +11,25 @@ class PortfolioSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.backgroundSecondary,
-      child: Column(
-        children: [
-          PortfolioHeader(userBalance: portfolioUiModel.userBalance),
-          const SizedBox(height: 16),
-          Expanded(
-            child: ListView.separated(
-              scrollDirection: Axis.vertical,
-              separatorBuilder: (context, index) => const SizedBox(height: 8),
-              itemCount: portfolioUiModel.investments.length,
-              itemBuilder: (context, index) {
-                return InvestmentsListItem(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        PortfolioHeader(userBalance: portfolioUiModel.userBalance),
+        Expanded(
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: portfolioUiModel.investments.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: InvestmentsListItem(
                   investmentsUiModel: portfolioUiModel.investments[index],
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
