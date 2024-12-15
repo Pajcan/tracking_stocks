@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:tracking_stocks/core/error/app_exceptions.dart';
+import 'package:tracking_stocks/core/error/exception_handler.dart';
 import 'package:tracking_stocks/features/portfolio/domain/model/portfolio.dart';
 import 'package:tracking_stocks/features/portfolio/domain/portfolio_repository.dart';
 
@@ -22,17 +23,15 @@ class PortfolioRepositoryImpl implements PortfolioRepository {
 
       yield* _marketSimulator.simulateMarket(initialPortfolio);
     } catch (e) {
-      throw NetworkException();
+      rethrow;
     }
   }
 
   @override
   Future<Portfolio> getInitialPortfolio() async {
-    try {
+    return await handleExceptions(() async {
       final portfolioResponse = await _service.fetchPortfolio();
       return _mapper.mapToDomain(portfolioResponse);
-    } catch (e) {
-      throw NetworkException();
-    }
+    });
   }
 }
