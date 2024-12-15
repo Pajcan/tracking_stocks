@@ -6,7 +6,7 @@ import 'package:tracking_stocks/app/di/injector.dart';
 import 'package:tracking_stocks/core/localization/domain/use_case/get_locale_use_case.dart';
 import 'package:tracking_stocks/core/localization/domain/use_case/save_locale_use_case.dart';
 import 'package:tracking_stocks/core/localization/presentation/locale_notifier.dart';
-import 'package:tracking_stocks/features/portfolio/domain/use_case/get_porftolio_use_case.dart';
+import 'package:tracking_stocks/features/portfolio/domain/use_case/observe_portfolio_use_case.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/bloc/portfolio_bloc.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/portfolio_screen.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/ui_model/mapper/porfolio_ui_mapper.dart';

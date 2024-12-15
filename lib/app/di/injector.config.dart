@@ -38,7 +38,7 @@ import 'package:tracking_stocks/features/portfolio/data/service/portfolio_servic
     as _i9;
 import 'package:tracking_stocks/features/portfolio/domain/portfolio_repository.dart'
     as _i695;
-import 'package:tracking_stocks/features/portfolio/domain/use_case/get_porftolio_use_case.dart'
+import 'package:tracking_stocks/features/portfolio/domain/use_case/observe_portfolio_use_case.dart'
     as _i885;
 import 'package:tracking_stocks/features/portfolio/presentation/bloc/portfolio_bloc.dart'
     as _i11;

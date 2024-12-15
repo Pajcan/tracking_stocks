@@ -7,7 +7,6 @@ import 'mappers/portfolio_mapper.dart';
 import 'market_simulator.dart';
 import 'service/portfolio_service.dart';
 
-
 @LazySingleton(as: PortfolioRepository)
 class PortfolioRepositoryImpl implements PortfolioRepository {
   final PortfolioService _service;
@@ -17,12 +16,21 @@ class PortfolioRepositoryImpl implements PortfolioRepository {
   PortfolioRepositoryImpl(this._service, this._mapper, this._marketSimulator);
 
   @override
-  Stream<Portfolio> getPortfolio() async* {
+  Stream<Portfolio> observePortfolioStream() async* {
+    try {
+      final initialPortfolio = await getInitialPortfolio();
+
+      yield* _marketSimulator.simulateMarket(initialPortfolio);
+    } catch (e) {
+      throw NetworkException();
+    }
+  }
+
+  @override
+  Future<Portfolio> getInitialPortfolio() async {
     try {
       final portfolioResponse = await _service.fetchPortfolio();
-      final portfolio = _mapper.mapToDomain(portfolioResponse);
-
-      yield* _marketSimulator.simulateMarket(portfolio);
+      return _mapper.mapToDomain(portfolioResponse);
     } catch (e) {
       throw NetworkException();
     }

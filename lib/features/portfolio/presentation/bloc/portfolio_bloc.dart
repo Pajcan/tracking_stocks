@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tracking_stocks/features/portfolio/domain/use_case/get_porftolio_use_case.dart';
+import 'package:tracking_stocks/features/portfolio/domain/use_case/observe_portfolio_use_case.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/ui_model/mapper/porfolio_ui_mapper.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/ui_model/porfolio_ui_model.dart';
 
@@ -11,7 +11,7 @@ part 'portfolio_state.dart';
 
 @injectable
 class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
-  final GetPortfolioUseCase _getPortfolioUseCase;
+  final ObservePortfolioUseCase _getPortfolioUseCase;
   final PortfolioUiMapper _portfolioUiMapper;
 
   PortfolioBloc(this._getPortfolioUseCase, this._portfolioUiMapper)
