@@ -30,6 +30,8 @@ import 'package:tracking_stocks/core/localization/presentation/locale_notifier.d
 import 'package:tracking_stocks/core/networking/dio_service.dart' as _i724;
 import 'package:tracking_stocks/features/portfolio/data/mappers/portfolio_mapper.dart'
     as _i717;
+import 'package:tracking_stocks/features/portfolio/data/market_simulator.dart'
+    as _i861;
 import 'package:tracking_stocks/features/portfolio/data/portfolio_repository_impl.dart'
     as _i1011;
 import 'package:tracking_stocks/features/portfolio/data/service/portfolio_service.dart'
@@ -59,18 +61,20 @@ extension GetItInjectableX on _i174.GetIt {
     final sharedPreferencesModule = _$SharedPreferencesModule();
     final apiClientModule = _$ApiClientModule();
     gh.factory<_i38.PortfolioUiMapper>(() => _i38.PortfolioUiMapper());
+    gh.factory<_i861.MarketSimulator>(() => _i861.MarketSimulator());
     gh.singleton<_i460.SharedPreferencesAsync>(
         () => sharedPreferencesModule.sharedPreferences);
     gh.lazySingleton<_i9.PortfolioService>(() => apiClientModule.apiClient);
     gh.lazySingleton<_i717.PortfolioMapper>(() => _i717.PortfolioMapper());
     gh.factory<_i301.IConfig>(() => _i979.AppConfig());
-    gh.lazySingleton<_i505.LocaleDataSource>(
-        () => _i505.LocaleDataSource(gh<_i460.SharedPreferencesAsync>()));
     gh.lazySingleton<_i695.PortfolioRepository>(
         () => _i1011.PortfolioRepositoryImpl(
               gh<_i9.PortfolioService>(),
               gh<_i717.PortfolioMapper>(),
+              gh<_i861.MarketSimulator>(),
             ));
+    gh.lazySingleton<_i505.LocaleDataSource>(
+        () => _i505.LocaleDataSource(gh<_i460.SharedPreferencesAsync>()));
     gh.factory<_i885.GetPortfolioUseCase>(
         () => _i885.GetPortfolioUseCase(gh<_i695.PortfolioRepository>()));
     gh.lazySingleton<_i166.LocalizationRepository>(
@@ -84,7 +88,7 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i885.GetPortfolioUseCase>(),
           gh<_i38.PortfolioUiMapper>(),
         ));
-    gh.singleton<_i174.LocaleNotifier>(
+    gh.lazySingleton<_i174.LocaleNotifier>(
         () => _i174.LocaleNotifier(gh<_i198.GetLocaleUseCase>()));
     gh.factory<_i483.UserHeaderCubit>(() => _i483.UserHeaderCubit(
           gh<_i198.GetLocaleUseCase>(),

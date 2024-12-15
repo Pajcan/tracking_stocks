@@ -14,3 +14,17 @@ class Balance extends Equatable {
   @override
   List<Object?> get props => [netValue, pnl, pnlPercentage];
 }
+
+extension BalanceCopyWith on Balance {
+  Balance copyWith({
+    double? netValue,
+    double? pnl,
+    double? pnlPercentage,
+  }) {
+    return Balance(
+      netValue: netValue ?? this.netValue,
+      pnl: pnl ?? this.pnl,
+      pnlPercentage: pnlPercentage ?? this.pnlPercentage,
+    );
+  }
+}

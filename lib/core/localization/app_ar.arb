@@ -3,5 +3,7 @@
   "netValue": "القيمة الصافية",
   "pnl": "الأرباح والخسائر (٪)",
   "languageEnglish": "الإنجليزية",
-  "languageArabic": "العربية"
+  "languageArabic": "العربية",
+  "retry": "Retry",
+  "error": "Error"
 }

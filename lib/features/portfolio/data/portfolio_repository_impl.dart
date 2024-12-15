@@ -4,6 +4,7 @@ import 'package:tracking_stocks/features/portfolio/domain/model/portfolio.dart';
 import 'package:tracking_stocks/features/portfolio/domain/portfolio_repository.dart';
 
 import 'mappers/portfolio_mapper.dart';
+import 'market_simulator.dart';
 import 'service/portfolio_service.dart';
 
 
@@ -11,8 +12,9 @@ import 'service/portfolio_service.dart';
 class PortfolioRepositoryImpl implements PortfolioRepository {
   final PortfolioService _service;
   final PortfolioMapper _mapper;
+  final MarketSimulator _marketSimulator;
 
-  PortfolioRepositoryImpl(this._service, this._mapper);
+  PortfolioRepositoryImpl(this._service, this._mapper, this._marketSimulator);
 
   @override
   Stream<Portfolio> getPortfolio() async* {
@@ -20,7 +22,7 @@ class PortfolioRepositoryImpl implements PortfolioRepository {
       final portfolioResponse = await _service.fetchPortfolio();
       final portfolio = _mapper.mapToDomain(portfolioResponse);
 
-      yield portfolio;
+      yield* _marketSimulator.simulateMarket(portfolio);
     } catch (e) {
       throw NetworkException();
     }

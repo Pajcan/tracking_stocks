@@ -11,7 +11,7 @@ class Position extends Equatable {
   final double pnl;
   final double pnlPercentage;
 
-  Position({
+  const Position({
     required this.instrument,
     required this.quantity,
     required this.averagePrice,
@@ -23,4 +23,26 @@ class Position extends Equatable {
 
   @override
   List<Object?> get props => [instrument, quantity, averagePrice, cost, marketValue, pnl, pnlPercentage];
+}
+
+extension PositionCopyWith on Position {
+  Position copyWith({
+    Instrument? instrument,
+    double? quantity,
+    double? averagePrice,
+    double? cost,
+    double? marketValue,
+    double? pnl,
+    double? pnlPercentage,
+  }) {
+    return Position(
+      instrument: instrument ?? this.instrument,
+      quantity: quantity ?? this.quantity,
+      averagePrice: averagePrice ?? this.averagePrice,
+      cost: cost ?? this.cost,
+      marketValue: marketValue ?? this.marketValue,
+      pnl: pnl ?? this.pnl,
+      pnlPercentage: pnlPercentage ?? this.pnlPercentage,
+    );
+  }
 }

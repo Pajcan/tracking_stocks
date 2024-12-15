@@ -18,7 +18,7 @@ class PriceWithPercentageText extends StatelessWidget {
   Widget build(BuildContext context) {
     final String percentageText = percentage >= 0
         ? "+${percentage.toStringAsFixed(1)}%"
-        : "-${percentage.toStringAsFixed(1)}%";
+        : "${percentage.toStringAsFixed(1)}%";
     final Color percentageColor = percentage >= 0 ? Colors.green : Colors.red;
     return Row(
       mainAxisSize: MainAxisSize.min,

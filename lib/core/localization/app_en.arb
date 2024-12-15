@@ -3,5 +3,7 @@
   "netValue": "Net Value",
   "pnl": "PnL (PnL %)",
   "languageEnglish": "English",
-  "languageArabic": "Arabic"
+  "languageArabic": "Arabic",
+  "retry": "Retry",
+  "error": "Error"
 }
