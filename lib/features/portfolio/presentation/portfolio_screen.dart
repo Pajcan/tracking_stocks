@@ -25,28 +25,30 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     return Scaffold(
       backgroundColor: AppColors.backgroundPrimary,
       appBar: null,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          UserHeader(),
-          BlocConsumer<PortfolioBloc, PortfolioState>(
-            listener: (context, state) {
-              if (state is PortfolioError) {
-                //showErrorDialog(context);
-              }
-            },
-            builder: (context, state) {
-              return switch (state) {
-                PortfolioInitial() => SizedBox(),
-                PortfolioLoading() => const AppLoader(),
-                PortfolioLoaded() => Expanded(
-                    child: PortfolioSection(
-                        portfolioUiModel: state.portfolioUiModel)),
-                PortfolioError() => const AppLoader(),
-              };
-            },
-          ),
-        ],
+      body: Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            UserHeader(),
+            BlocConsumer<PortfolioBloc, PortfolioState>(
+              listener: (context, state) {
+                if (state is PortfolioError) {
+                  //showErrorDialog(context);
+                }
+              },
+              builder: (context, state) {
+                return switch (state) {
+                  PortfolioInitial() => SizedBox(),
+                  PortfolioLoading() => const AppLoader(),
+                  PortfolioLoaded() => Expanded(
+                      child: PortfolioSection(
+                          portfolioUiModel: state.portfolioUiModel)),
+                  PortfolioError() => const AppLoader(),
+                };
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

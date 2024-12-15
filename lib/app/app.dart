@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 import 'package:tracking_stocks/app/di/injector.dart';
 import 'package:tracking_stocks/core/localization/domain/use_case/get_locale_use_case.dart';
 import 'package:tracking_stocks/core/localization/domain/use_case/save_locale_use_case.dart';
@@ -27,38 +28,45 @@ class _TrackingStocksAppState extends State<TrackingStocksApp> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Locale>(
-        stream: localeNotifier.localeStream,
-        builder: (context, snapshot) {
-          return MultiBlocProvider(
-            providers: [
-              BlocProvider<PortfolioBloc>(
-                  create: (context) => PortfolioBloc(
-                        getIt<GetPortfolioUseCase>(),
-                        getIt<PortfolioUiMapper>(),
-                      )),
-              BlocProvider<UserHeaderCubit>(
-                  create: (context) => UserHeaderCubit(
-                        getIt<GetLocaleUseCase>(),
-                        getIt<SaveLocaleUseCase>(),
-                      )),
-            ],
-            child: MaterialApp(
-              title: 'Tracking Stocks',
-              locale: localeNotifier.locale,
-              supportedLocales: const [
-                Locale('en'),
-                Locale('ar'),
-              ],
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              home: const PortfolioScreen(),
-            ),
-          );
-        });
+    return ChangeNotifierProvider<LocaleNotifier>.value(
+        value: localeNotifier,
+
+        child: Consumer<LocaleNotifier>(
+        builder: (context, notifier, child)
+    {
+      return MultiBlocProvider(
+        providers: [
+          BlocProvider<PortfolioBloc>(
+              create: (context) =>
+                  PortfolioBloc(
+                    getIt<GetPortfolioUseCase>(),
+                    getIt<PortfolioUiMapper>(),
+                  )),
+          BlocProvider<UserHeaderCubit>(
+              create: (context) =>
+                  UserHeaderCubit(
+                    getIt<GetLocaleUseCase>(),
+                    getIt<SaveLocaleUseCase>(),
+                    localeNotifier,
+                  )),
+        ],
+        child: MaterialApp(
+          title: 'Tracking Stocks',
+          locale: localeNotifier.locale,
+          supportedLocales: const [
+            Locale('en'),
+            Locale('ar'),
+          ],
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          home: const PortfolioScreen(),
+        ),
+      );
+    }),
+    );
   }
 }

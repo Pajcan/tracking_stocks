@@ -7,11 +7,20 @@ class Language extends Equatable {
   final String name;
   final String abbreviation;
 
-  Language(
+  const Language(
       {required this.code, required this.name, required this.abbreviation});
 
   @override
   List<Object?> get props => [code, name, abbreviation];
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is Language && other.code == code;
+  }
+
+  @override
+  int get hashCode => code.hashCode;
 }
 
 List<Language> getSupportedLanguages(BuildContext context) {

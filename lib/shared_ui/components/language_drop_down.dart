@@ -7,11 +7,11 @@ class LanguageDropdown extends StatefulWidget {
   final ValueChanged<Language> onLanguageSelected;
 
   const LanguageDropdown({
-    Key? key,
+    super.key,
     required this.initialLanguage,
     required this.languages,
     required this.onLanguageSelected,
-  }) : super(key: key);
+  });
 
   @override
   State<LanguageDropdown> createState() => _LanguageDropdownState();
@@ -24,7 +24,7 @@ class _LanguageDropdownState extends State<LanguageDropdown> {
   void initState() {
     super.initState();
     selectedLanguage =
-        widget.initialLanguage; // Initialize with the provided initial language
+        widget.initialLanguage;
   }
 
   @override
@@ -34,8 +34,7 @@ class _LanguageDropdownState extends State<LanguageDropdown> {
       items: widget.languages.map((Language lang) {
         return DropdownMenuItem<Language>(
           value: lang,
-          child: Text(lang.abbreviation), // Abbreviation, e.g., "EN"
-          // Full language name, e.g., "English"
+          child: Text(lang.abbreviation),
         );
       }).toList(),
       onChanged: (Language? newLang) {
@@ -43,8 +42,7 @@ class _LanguageDropdownState extends State<LanguageDropdown> {
           setState(() {
             selectedLanguage = newLang;
           });
-          widget.onLanguageSelected(
-              newLang); // Notify parent widget of the selected language
+          widget.onLanguageSelected(newLang);
         }
       },
     );

@@ -6,10 +6,9 @@ import 'package:tracking_stocks/core/constants/app_constants.dart';
 import 'package:tracking_stocks/core/constants/icons.dart';
 import 'package:tracking_stocks/core/utils/language_utls.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/user_header/bloc/user_header_cubit.dart';
-import 'package:tracking_stocks/shared_ui/components/LanguageDropDown.dart';
+import 'package:tracking_stocks/shared_ui/components/language_drop_down.dart';
 import 'package:tracking_stocks/shared_ui/theme/app_text_styles.dart';
 import 'package:tracking_stocks/shared_ui/theme/gradients.dart';
-
 
 class UserHeader extends StatelessWidget {
   const UserHeader({super.key});
@@ -35,8 +34,8 @@ class UserHeader extends StatelessWidget {
               return switch (state) {
                 UserHeaderInitial() => const SizedBox(),
                 UserHeaderLoaded() => LanguageDropdown(
-                    initialLanguage:
-                        LanguageUtils.getLanguageFromCode(context, state.languageCode),
+                    initialLanguage: LanguageUtils.getLanguageFromCode(
+                        context, state.languageCode),
                     languages: getSupportedLanguages(context),
                     onLanguageSelected: (language) =>
                         context.read<UserHeaderCubit>().saveLanguage(language)),

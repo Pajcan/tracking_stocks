@@ -89,6 +89,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i483.UserHeaderCubit>(() => _i483.UserHeaderCubit(
           gh<_i198.GetLocaleUseCase>(),
           gh<_i363.SaveLocaleUseCase>(),
+          gh<_i174.LocaleNotifier>(),
         ));
     return this;
   }
