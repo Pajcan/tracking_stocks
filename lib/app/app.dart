@@ -40,6 +40,7 @@ class _TrackingStocksAppState extends State<TrackingStocksApp> {
             locale: localeNotifier.locale,
             supportedLocales: const [
               Locale('en'),
+              Locale('ar'),
             ],
             localizationsDelegates: const [
               AppLocalizations.delegate,
