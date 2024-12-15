@@ -6,7 +6,6 @@ import 'package:tracking_stocks/core/localization/domain/use_case/save_locale_us
 import 'package:equatable/equatable.dart';
 import 'package:tracking_stocks/core/localization/presentation/locale_notifier.dart';
 
-
 part 'user_header_state.dart';
 
 @injectable
@@ -15,7 +14,8 @@ class UserHeaderCubit extends Cubit<UserHeaderState> {
   final SaveLocaleUseCase _saveLocaleUseCase;
   final LocaleNotifier _localeNotifier;
 
-  UserHeaderCubit(this._getLocaleUseCase, this._saveLocaleUseCase, this._localeNotifier)
+  UserHeaderCubit(
+      this._getLocaleUseCase, this._saveLocaleUseCase, this._localeNotifier)
       : super(UserHeaderInitial()) {
     _loadLanguage();
   }

@@ -3,5 +3,9 @@
   "netValue": "القيمة الصافية",
   "pnl": "الأرباح والخسائر (٪)",
   "languageEnglish": "الإنجليزية",
-  "languageArabic": "العربية"
+  "languageArabic": "العربية",
+  "retry": "Retry",
+  "error": "Error",
+  "genericErrorMessage": "Something went wrong, please try again later.",
+  "noInternetConnection": "Please check your internet connection and try again."
 }

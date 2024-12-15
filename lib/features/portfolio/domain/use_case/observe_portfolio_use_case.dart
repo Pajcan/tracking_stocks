@@ -4,13 +4,13 @@ import 'package:tracking_stocks/features/portfolio/domain/model/portfolio.dart';
 import 'package:tracking_stocks/features/portfolio/domain/portfolio_repository.dart';
 
 @injectable
-class GetPortfolioUseCase extends UseCaseNoParams<Stream<Portfolio>> {
+class ObservePortfolioUseCase extends UseCaseNoParams<Stream<Portfolio>> {
   final PortfolioRepository _portfolioRepository;
 
-  GetPortfolioUseCase(this._portfolioRepository);
+  ObservePortfolioUseCase(this._portfolioRepository);
 
   @override
   Stream<Portfolio> execute() {
-    return _portfolioRepository.getPortfolio();
+    return _portfolioRepository.observePortfolioStream();
   }
 }

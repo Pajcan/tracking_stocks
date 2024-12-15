@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/bloc/portfolio_bloc.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/portfolio_section.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/user_header/user_header.dart';
+import 'package:tracking_stocks/shared_ui/components/error_screen.dart';
 import 'package:tracking_stocks/shared_ui/components/loading_components.dart';
 import 'package:tracking_stocks/shared_ui/theme/colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PortfolioScreen extends StatefulWidget {
   const PortfolioScreen({super.key});
@@ -15,40 +17,33 @@ class PortfolioScreen extends StatefulWidget {
 
 class _PortfolioScreenState extends State<PortfolioScreen> {
   @override
-  void initState() {
-    super.initState();
-    context.read<PortfolioBloc>().add(PortfolioSubscribe());
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundPrimary,
       appBar: null,
-      body: Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            UserHeader(),
-            BlocConsumer<PortfolioBloc, PortfolioState>(
-              listener: (context, state) {
-                if (state is PortfolioError) {
-                  //showErrorDialog(context);
-                }
-              },
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          UserHeader(),
+          Expanded(
+            child: BlocBuilder<PortfolioBloc, PortfolioState>(
               builder: (context, state) {
                 return switch (state) {
                   PortfolioInitial() => SizedBox(),
                   PortfolioLoading() => const AppLoader(),
-                  PortfolioLoaded() => Expanded(
-                      child: PortfolioSection(
-                          portfolioUiModel: state.portfolioUiModel)),
-                  PortfolioError() => const AppLoader(),
+                  PortfolioLoaded() =>
+                    PortfolioSection(portfolioUiModel: state.portfolioUiModel),
+                  PortfolioError() => ErrorComponent(
+                      errorMessage:
+                          AppLocalizations.of(context)!.noInternetConnection,
+                      onRetry: () => context
+                          .read<PortfolioBloc>()
+                          .add(PortfolioSubscribe())),
                 };
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

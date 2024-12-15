@@ -7,6 +7,7 @@ class AppLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: double.infinity,
       color: Colors.transparent,
       child: Center(
         child: CircularProgressIndicator(color: AppColors.primary),

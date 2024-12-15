@@ -12,3 +12,15 @@ class Portfolio extends Equatable {
   @override
   List<Object?> get props => [balance, positions];
 }
+
+extension PortfolioCopyWith on Portfolio {
+  Portfolio copyWith({
+    Balance? balance,
+    List<Position>? positions,
+  }) {
+    return Portfolio(
+      balance: balance ?? this.balance,
+      positions: positions ?? this.positions,
+    );
+  }
+}
