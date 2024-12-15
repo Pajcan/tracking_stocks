@@ -29,5 +29,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
         },
       );
     });
+
+    add(PortfolioSubscribe());
   }
 }

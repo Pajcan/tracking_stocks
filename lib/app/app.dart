@@ -39,7 +39,7 @@ class _TrackingStocksAppState extends State<TrackingStocksApp> {
           BlocProvider<PortfolioBloc>(
               create: (context) =>
                   PortfolioBloc(
-                    getIt<GetPortfolioUseCase>(),
+                    getIt<ObservePortfolioUseCase>(),
                     getIt<PortfolioUiMapper>(),
                   )),
           BlocProvider<UserHeaderCubit>(

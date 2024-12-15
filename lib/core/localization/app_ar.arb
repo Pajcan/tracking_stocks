@@ -5,5 +5,7 @@
   "languageEnglish": "الإنجليزية",
   "languageArabic": "العربية",
   "retry": "Retry",
-  "error": "Error"
+  "error": "Error",
+  "genericErrorMessage": "Something went wrong, please try again later.",
+  "noInternetConnection": "Please check your internet connection and try again."
 }

@@ -39,7 +39,7 @@ import 'package:tracking_stocks/features/portfolio/data/service/portfolio_servic
 import 'package:tracking_stocks/features/portfolio/domain/portfolio_repository.dart'
     as _i695;
 import 'package:tracking_stocks/features/portfolio/domain/use_case/observe_portfolio_use_case.dart'
-    as _i885;
+    as _i131;
 import 'package:tracking_stocks/features/portfolio/presentation/bloc/portfolio_bloc.dart'
     as _i11;
 import 'package:tracking_stocks/features/portfolio/presentation/ui_model/mapper/porfolio_ui_mapper.dart'
@@ -75,8 +75,8 @@ extension GetItInjectableX on _i174.GetIt {
             ));
     gh.lazySingleton<_i505.LocaleDataSource>(
         () => _i505.LocaleDataSource(gh<_i460.SharedPreferencesAsync>()));
-    gh.factory<_i885.GetPortfolioUseCase>(
-        () => _i885.GetPortfolioUseCase(gh<_i695.PortfolioRepository>()));
+    gh.factory<_i131.ObservePortfolioUseCase>(
+        () => _i131.ObservePortfolioUseCase(gh<_i695.PortfolioRepository>()));
     gh.lazySingleton<_i166.LocalizationRepository>(
         () => _i680.LocalizationRepositoryImpl(gh<_i505.LocaleDataSource>()));
     gh.singleton<_i724.DioService>(() => _i724.DioService(gh<_i301.IConfig>()));
@@ -84,12 +84,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i198.GetLocaleUseCase(gh<_i166.LocalizationRepository>()));
     gh.factory<_i363.SaveLocaleUseCase>(
         () => _i363.SaveLocaleUseCase(gh<_i166.LocalizationRepository>()));
-    gh.factory<_i11.PortfolioBloc>(() => _i11.PortfolioBloc(
-          gh<_i885.GetPortfolioUseCase>(),
-          gh<_i38.PortfolioUiMapper>(),
-        ));
     gh.lazySingleton<_i174.LocaleNotifier>(
         () => _i174.LocaleNotifier(gh<_i198.GetLocaleUseCase>()));
+    gh.factory<_i11.PortfolioBloc>(() => _i11.PortfolioBloc(
+          gh<_i131.ObservePortfolioUseCase>(),
+          gh<_i38.PortfolioUiMapper>(),
+        ));
     gh.factory<_i483.UserHeaderCubit>(() => _i483.UserHeaderCubit(
           gh<_i198.GetLocaleUseCase>(),
           gh<_i363.SaveLocaleUseCase>(),

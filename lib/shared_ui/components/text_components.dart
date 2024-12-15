@@ -89,7 +89,7 @@ class PositionCostText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("$quantity x $averagePrice = $costs",
+    return Text("\u202A$quantity x $averagePrice = $costs\u202C",
         style: AppTextStyles.labelMedium.copyWith(color: AppColors.textSecondary));
   }
 }
