@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/bloc/portfolio_bloc.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/portfolio_section.dart';
+import 'package:tracking_stocks/features/portfolio/presentation/user_header/user_header.dart';
 import 'package:tracking_stocks/shared_ui/components/loading_components.dart';
 import 'package:tracking_stocks/shared_ui/theme/colors.dart';
 
@@ -13,7 +14,6 @@ class PortfolioScreen extends StatefulWidget {
 }
 
 class _PortfolioScreenState extends State<PortfolioScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -25,21 +25,30 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     return Scaffold(
       backgroundColor: AppColors.backgroundPrimary,
       appBar: null,
-      body: BlocConsumer<PortfolioBloc, PortfolioState>(
-        listener: (context, state) {
-          if (state is PortfolioError) {
-            //showErrorDialog(context);
-          }
-        },
-        builder: (context, state) {
-          return switch (state) {
-            PortfolioInitial() => SizedBox(),
-            PortfolioLoading() => const AppLoader(),
-            PortfolioLoaded() =>
-              PortfolioSection(portfolioUiModel: state.portfolioUiModel),
-            PortfolioError() => const AppLoader(),
-          };
-        },
+      body: Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            UserHeader(),
+            BlocConsumer<PortfolioBloc, PortfolioState>(
+              listener: (context, state) {
+                if (state is PortfolioError) {
+                  //showErrorDialog(context);
+                }
+              },
+              builder: (context, state) {
+                return switch (state) {
+                  PortfolioInitial() => SizedBox(),
+                  PortfolioLoading() => const AppLoader(),
+                  PortfolioLoaded() => Expanded(
+                      child: PortfolioSection(
+                          portfolioUiModel: state.portfolioUiModel)),
+                  PortfolioError() => const AppLoader(),
+                };
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

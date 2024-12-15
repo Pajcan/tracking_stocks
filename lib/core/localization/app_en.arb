@@ -1,5 +1,7 @@
 {
   "appName": "Tracking Stocks",
   "netValue": "Net Value",
-  "pnl": "PnL (PnL %)"
+  "pnl": "PnL (PnL %)",
+  "languageEnglish": "English",
+  "languageArabic": "Arabic"
 }
