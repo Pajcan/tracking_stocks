@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/bloc/portfolio_bloc.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/portfolio_section.dart';
+import 'package:tracking_stocks/features/portfolio/presentation/user_header/user_header.dart';
 import 'package:tracking_stocks/shared_ui/components/loading_components.dart';
-import 'package:tracking_stocks/shared_ui/components/user_header_component.dart';
 import 'package:tracking_stocks/shared_ui/theme/colors.dart';
 
 class PortfolioScreen extends StatefulWidget {
@@ -28,9 +28,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          UserHeaderComponent(onLanguageChanged: (language) {
-            //context.read<LocaleNotifier>().changeLanguage(language);
-          }),
+          UserHeader(),
           BlocConsumer<PortfolioBloc, PortfolioState>(
             listener: (context, state) {
               if (state is PortfolioError) {

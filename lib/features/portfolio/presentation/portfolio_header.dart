@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tracking_stocks/core/config/language.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/ui_model/porfolio_ui_model.dart';
 import 'package:tracking_stocks/shared_ui/components/text_components.dart';
-import 'package:tracking_stocks/shared_ui/components/user_header_component.dart';
 import 'package:tracking_stocks/shared_ui/theme/app_text_styles.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tracking_stocks/shared_ui/theme/colors.dart';

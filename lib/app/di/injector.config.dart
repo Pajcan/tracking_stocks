@@ -42,6 +42,8 @@ import 'package:tracking_stocks/features/portfolio/presentation/bloc/portfolio_b
     as _i11;
 import 'package:tracking_stocks/features/portfolio/presentation/ui_model/mapper/porfolio_ui_mapper.dart'
     as _i38;
+import 'package:tracking_stocks/features/portfolio/presentation/user_header/bloc/user_header_cubit.dart'
+    as _i483;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -84,6 +86,10 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.singleton<_i174.LocaleNotifier>(
         () => _i174.LocaleNotifier(gh<_i198.GetLocaleUseCase>()));
+    gh.factory<_i483.UserHeaderCubit>(() => _i483.UserHeaderCubit(
+          gh<_i198.GetLocaleUseCase>(),
+          gh<_i363.SaveLocaleUseCase>(),
+        ));
     return this;
   }
 }
