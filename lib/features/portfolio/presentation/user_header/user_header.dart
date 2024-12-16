@@ -16,31 +16,37 @@ class UserHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       decoration: BoxDecoration(
         gradient: AppGradients.primaryLabelGradient,
       ),
-      child: Row(
+      child: Column(
         children: [
-          SvgPicture.asset(SvgIcons.userPlaceholder, width: 32, height: 32),
-          const SizedBox(width: 16),
-          Text(
-            AppConstants.userPlaceholderName,
-            style: AppTextStyles.labelLarge,
-          ),
-          Spacer(),
-          BlocBuilder<UserHeaderCubit, UserHeaderState>(
-            builder: (context, state) {
-              return switch (state) {
-                UserHeaderInitial() => const SizedBox(),
-                UserHeaderLoaded() => LanguageDropdown(
-                    initialLanguage: LanguageUtils.getLanguageFromCode(
-                        context, state.languageCode),
-                    languages: getSupportedLanguages(context),
-                    onLanguageSelected: (language) =>
-                        context.read<UserHeaderCubit>().saveLanguage(language)),
-              };
-            },
+          const SizedBox(height: 48),
+          Row(
+            children: [
+              SvgPicture.asset(SvgIcons.userPlaceholder, width: 32, height: 32),
+              const SizedBox(width: 16),
+              Text(
+                AppConstants.userPlaceholderName,
+                style: AppTextStyles.labelLarge,
+              ),
+              Spacer(),
+              BlocBuilder<UserHeaderCubit, UserHeaderState>(
+                builder: (context, state) {
+                  return switch (state) {
+                    UserHeaderInitial() => const SizedBox(),
+                    UserHeaderLoaded() => LanguageDropdown(
+                        initialLanguage: LanguageUtils.getLanguageFromCode(
+                            context, state.languageCode),
+                        languages: getSupportedLanguages(context),
+                        onLanguageSelected: (language) => context
+                            .read<UserHeaderCubit>()
+                            .saveLanguage(language)),
+                  };
+                },
+              ),
+            ],
           ),
         ],
       ),
