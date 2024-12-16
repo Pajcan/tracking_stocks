@@ -60,8 +60,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final sharedPreferencesModule = _$SharedPreferencesModule();
     final apiClientModule = _$ApiClientModule();
-    gh.factory<_i38.PortfolioUiMapper>(() => _i38.PortfolioUiMapper());
     gh.factory<_i861.MarketSimulator>(() => _i861.MarketSimulator());
+    gh.factory<_i38.PortfolioUiMapper>(() => _i38.PortfolioUiMapper());
     gh.singleton<_i460.SharedPreferencesAsync>(
         () => sharedPreferencesModule.sharedPreferences);
     gh.lazySingleton<_i9.PortfolioService>(() => apiClientModule.apiClient);

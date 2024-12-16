@@ -8,7 +8,7 @@ class AppGradients {
     end: Alignment.centerRight,
     colors: [
       AppColors.primary,
-      AppColors.primaryVariant,
+      AppColors.secondary,
     ],
   );
 }
