@@ -1,6 +1,6 @@
 # Tracking Stocks APP
 ## Project Overview
-This project demonstrates a feature-based architecture approach using Flutter. It is a simplified implementation suitable for this specific task but designed with scalability in mind. For a larger, real-world application, these modules can be further split into separate Dart packages.
+This project demonstrates a feature-based architecture approach using Flutter, following Clean Architecture principles. It is a simplified implementation suitable for this specific task but designed with scalability in mind. For a larger, real-world application, these modules can be further split into separate Dart packages.
 
 ## Architecture Overview
 The project is structured into the following directories:
@@ -30,3 +30,11 @@ The entry point of the application, containing:
 
   - Application setup (app.dart)
   - Dependency Injection (DI) module using GetIt and injector
+
+# Testing
+I have implemented a few tests to showcase my approach:
+
+- Unit Tests: For core business logic.
+- BLoC Tests: To validate the state management behavior.
+- Widget Tests: To ensure UI components behave as expected.
+* Note: Due to time constraints, I did not achieve full test coverage for all features but focused on key parts as a demonstration.
