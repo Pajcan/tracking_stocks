@@ -6,7 +6,7 @@ class LanguageUtils {
     final supportedLanguages = getSupportedLanguages(context);
     return supportedLanguages.firstWhere(
       (language) => language.code == code,
-      orElse: () => supportedLanguages.first, // Fallback to the first language
+      orElse: () => supportedLanguages.first,
     );
   }
 }

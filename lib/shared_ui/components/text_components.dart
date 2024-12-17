@@ -19,7 +19,8 @@ class PriceWithPercentageText extends StatelessWidget {
     final String percentageText = percentage >= 0
         ? "+${percentage.toStringAsFixed(1)}%"
         : "${percentage.toStringAsFixed(1)}%";
-    final Color percentageColor = percentage >= 0 ? Colors.green : Colors.red;
+    final Color percentageColor =
+        percentage >= 0 ? AppColors.textGreen : AppColors.textRed;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -90,6 +91,7 @@ class PositionCostText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text("\u202A$quantity x $averagePrice = $costs\u202C",
-        style: AppTextStyles.labelMedium.copyWith(color: AppColors.textSecondary));
+        style:
+            AppTextStyles.labelMedium.copyWith(color: AppColors.textSecondary));
   }
 }

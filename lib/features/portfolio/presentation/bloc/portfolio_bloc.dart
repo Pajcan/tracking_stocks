@@ -20,7 +20,6 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
       : super(PortfolioInitial()) {
     on<PortfolioSubscribe>(_onPortfolioSubscribe);
 
-    // Trigger initial subscription
     add(PortfolioSubscribe());
   }
 

@@ -22,33 +22,3 @@ class LocaleNotifier extends ChangeNotifier {
     notifyListeners();
   }
 }
-
-//
-// @singleton
-// class LocaleNotifier extends ChangeNotifier {
-//   final GetLocaleUseCase _getLocaleUseCase;
-//   Locale _locale = Locale('en');
-//
-//   LocaleNotifier(this._getLocaleUseCase);
-//
-//   Locale get locale => _locale;
-//   final StreamController<Locale> _localeController =
-//   StreamController<Locale>.broadcast();
-//
-//   Stream<Locale> get localeStream => _localeController.stream;
-//
-//   Future<void> initialize() async {
-//     final savedLanguageCode = await _getLocaleUseCase.execute();
-//     _locale = Locale(savedLanguageCode);
-//     notifyListeners();
-//   }
-//
-//   void setLocale(String languageCode) {
-//     _localeController.add(Locale(languageCode));
-//   }
-//
-//   void dispose() {
-//     _localeController.close();
-//   }
-// }
-

@@ -7,7 +7,6 @@ import 'package:tracking_stocks/features/portfolio/presentation/user_header/user
 import 'package:tracking_stocks/shared_ui/components/error_screen.dart';
 import 'package:tracking_stocks/shared_ui/components/loading_components.dart';
 import 'package:tracking_stocks/shared_ui/theme/colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PortfolioScreen extends StatefulWidget {
   const PortfolioScreen({super.key});
