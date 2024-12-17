@@ -15,37 +15,53 @@ class MarketSimulator {
 
     while (true) {
       await Future.delayed(Duration(seconds: 1));
-      final updatedPositions = currentPortfolio.positions.map((position) {
-        final newPrice = _generateRandomPrice(position.instrument.lastTradedPrice);
-        final marketValue = position.quantity * newPrice;
-        final pnl = marketValue - position.cost;
-        final pnlPercentage = (pnl * 100) / (position.cost > 0 ? position.cost : 1);
 
-        return position.copyWith(
-          instrument: position.instrument.copyWith(lastTradedPrice: newPrice),
-          marketValue: marketValue,
-          pnl: pnl,
-          pnlPercentage: pnlPercentage,
-        );
-      }).toList();
+      final updatedPositions =
+          _calculateUpdatedPositions(currentPortfolio.positions);
 
-      // Update balance
-      final netValue = updatedPositions.fold<double>(0, (sum, position) => sum + position.marketValue);
-      final pnl = updatedPositions.fold<double>(0, (sum, position) => sum + position.pnl);
-      final cost = updatedPositions.fold<double>(0, (sum, position) => sum + position.cost);
-      final pnlPercentage = (pnl * 100) / (cost > 0 ? cost : 1);
+      final updatedBalance = _calculateUpdatedBalance(updatedPositions);
 
-      currentPortfolio = portfolio.copyWith(
-        balance: portfolio.balance.copyWith(
-          netValue: netValue,
-          pnl: pnl,
-          pnlPercentage: pnlPercentage,
-        ),
+      currentPortfolio = currentPortfolio.copyWith(
+        balance: updatedBalance,
         positions: updatedPositions,
       );
 
       yield currentPortfolio;
     }
+  }
+
+  List<Position> _calculateUpdatedPositions(List<Position> positions) {
+    return positions.map((position) {
+      final newPrice =
+          _generateRandomPrice(position.instrument.lastTradedPrice);
+      final marketValue = position.quantity * newPrice;
+      final pnl = marketValue - position.cost;
+      final pnlPercentage =
+          (pnl * 100) / (position.cost > 0 ? position.cost : 1);
+
+      return position.copyWith(
+        instrument: position.instrument.copyWith(lastTradedPrice: newPrice),
+        marketValue: marketValue,
+        pnl: pnl,
+        pnlPercentage: pnlPercentage,
+      );
+    }).toList();
+  }
+
+  Balance _calculateUpdatedBalance(List<Position> positions) {
+    final netValue = positions.fold<double>(
+        0, (sum, position) => sum + position.marketValue);
+    final pnl =
+        positions.fold<double>(0, (sum, position) => sum + position.pnl);
+    final cost =
+        positions.fold<double>(0, (sum, position) => sum + position.cost);
+    final pnlPercentage = (pnl * 100) / (cost > 0 ? cost : 1);
+
+    return Balance(
+      netValue: netValue,
+      pnl: pnl,
+      pnlPercentage: pnlPercentage,
+    );
   }
 
   double _generateRandomPrice(double basePrice) {
