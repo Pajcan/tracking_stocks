@@ -1,3 +1,11 @@
 {
-  "appName": "Tracking Stocks"
+  "appName": "Tracking Stocks",
+  "netValue": "Net Value",
+  "pnl": "PnL (PnL %)",
+  "languageEnglish": "English",
+  "languageArabic": "Arabic",
+  "retry": "Retry",
+  "error": "Error",
+  "genericErrorMessage": "Something went wrong, please try again later.",
+  "noInternetConnection": "Please check your internet connection and try again."
 }
