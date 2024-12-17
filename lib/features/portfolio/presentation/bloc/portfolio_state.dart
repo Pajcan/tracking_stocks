@@ -35,5 +35,15 @@ final class PortfolioLoaded extends PortfolioState {
 }
 
 final class PortfolioError extends PortfolioState {
-  const PortfolioError();
+    const PortfolioError(this.errorType);
+
+  final PortfolioErrorType errorType;
+
+  @override
+  List<Object> get props => [errorType];
+}
+
+enum PortfolioErrorType {
+  noInternetConnection,
+  genericError,
 }

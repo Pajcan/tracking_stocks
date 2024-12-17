@@ -29,6 +29,7 @@ class MarketSimulator {
         );
       }).toList();
 
+      // Update balance
       final netValue = updatedPositions.fold<double>(0, (sum, position) => sum + position.marketValue);
       final pnl = updatedPositions.fold<double>(0, (sum, position) => sum + position.pnl);
       final cost = updatedPositions.fold<double>(0, (sum, position) => sum + position.cost);

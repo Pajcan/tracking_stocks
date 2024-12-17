@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/bloc/portfolio_bloc.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/portfolio_section.dart';
+import 'package:tracking_stocks/features/portfolio/presentation/ui_model/mapper/exception_util.dart';
 import 'package:tracking_stocks/features/portfolio/presentation/user_header/user_header.dart';
 import 'package:tracking_stocks/shared_ui/components/error_screen.dart';
 import 'package:tracking_stocks/shared_ui/components/loading_components.dart';
@@ -34,8 +35,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                   PortfolioLoaded() =>
                     PortfolioSection(portfolioUiModel: state.portfolioUiModel),
                   PortfolioError() => ErrorComponent(
-                      errorMessage:
-                          AppLocalizations.of(context)!.noInternetConnection,
+                      errorMessage: state.errorType.toLocalizedMessage(context),
                       onRetry: () => context
                           .read<PortfolioBloc>()
                           .add(PortfolioSubscribe())),

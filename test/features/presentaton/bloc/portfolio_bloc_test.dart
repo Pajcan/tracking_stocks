@@ -97,7 +97,7 @@ void main() {
     },
     act: (bloc) => bloc.add(PortfolioSubscribe()),
     expect: () => <PortfolioState>[
-      PortfolioError(),
+      PortfolioError(PortfolioErrorType.noInternetConnection),
     ],
   );
 

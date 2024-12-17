@@ -4,8 +4,8 @@
   "pnl": "الأرباح والخسائر (٪)",
   "languageEnglish": "الإنجليزية",
   "languageArabic": "العربية",
-  "retry": "Retry",
-  "error": "Error",
-  "genericErrorMessage": "Something went wrong, please try again later.",
-  "noInternetConnection": "Please check your internet connection and try again."
+  "retry": "إعادة المحاولة",
+  "error": "خطأ",
+  "genericErrorMessage": "حدث خطأ ما، يرجى المحاولة مرة أخرى لاحقاً.",
+  "noInternetConnection": "يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى."
 }

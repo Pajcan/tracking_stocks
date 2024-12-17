@@ -77,7 +77,7 @@ void main() {
 
   testWidgets('displays ErrorComponent when state is PortfolioError',
       (WidgetTester tester) async {
-    when(mockPortfolioBloc.state).thenReturn(PortfolioError());
+    when(mockPortfolioBloc.state).thenReturn(PortfolioError(PortfolioErrorType.noInternetConnection));
 
     await tester.pumpWidget(createWidgetUnderTest());
 
