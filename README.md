@@ -38,3 +38,10 @@ I have implemented a few tests to showcase my approach:
 - BLoC Tests: To validate the state management behavior.
 - Widget Tests: To ensure UI components behave as expected.
 * Note: Due to time constraints, I did not achieve full test coverage for all features but focused on key parts as a demonstration.
+
+# Build Instructions
+If link expired, create new response at https://run.mocky.io/
+- Replace path in core/constants/app_constants.dart $portfolioPath
+- Run: pub get
+- Run: flutter pub run build_runner build --delete-conflicting-outputs
+
